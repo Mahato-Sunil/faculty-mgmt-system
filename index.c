@@ -17,10 +17,10 @@ int flag;
 /* struct for students */
 struct student
 {
-    char fname[10];
-    char mname[10];
-    char lname[10];
-    char address[10];
+    char fname[20];
+    char mname[20];
+    char lname[20];
+    char address[20];
     long int contact;
     char email[20];
     float gpa;
@@ -29,10 +29,25 @@ struct student
     char semester[10];
 };
 struct student s;
-struct student ts;
+
+// struct for the teachers 
+struct teacher
+{
+    char fname[20];
+    char mname[20];
+    char lname[20];
+    char address[20];
+    long int contact;
+    char email[20];
+    int work_experience;
+    int ssf;
+};
+struct teacher tech;
+
 
 // file pointer declaration 
 FILE *fp, *temp;
+FILE *fpt, *t_temp;
 
 //function ti return to main menu
 void return_to_menu()
@@ -149,6 +164,7 @@ void std_search()
         {
             fprintf(stderr,"\n Error : %s", strerror(errno));
             printf("\n Please create file before procedding !");
+            return_to_menu();
         }
     rewind(fp);                     // moving the pointer to the initial line
     fseek(fp,0,SEEK_END);           //seeking to the last of the files
@@ -167,13 +183,17 @@ void std_search()
                 has_record = 'y';
             }
         }
-        if (has_record = 'n')
-            printf("\n Sorry the record you are trying to search is not found in the list. ");
+     if (has_record = 'n')
+        printf("\n Sorry the record you are trying to search is not found in the list. ");
     }   
     else
     {
         printf("\n Sorry The file is empty. \n Please Add some details before procedding !!");
     } 
+
+    fclose(fp);
+    return_to_menu();
+
 }
 
 // function to delete the record of the students
@@ -188,6 +208,7 @@ void std_delete()
 	if (fp == NULL)
 	{
 		fprintf(stderr, "\n Error :  %s", strerror(errno));
+        return_to_menu();
 	}
 
 	rewind(fp);
@@ -268,15 +289,31 @@ void std_display()
         return_to_menu();
     }
 
-    //displaying the titles 
-    printf("\n Name  \t Address  \t Registration \t Contact Number /t Email Address /t Faculty /t Semester /t GPA of +2 /n");
+    rewind(fp);    // rewinding the pointer to the initial line 
 
-    while(fread(&s, sizeof(struct student), 1, fp))
+    fseek(fp, 0, SEEK_END); // going to the last of the file 
+    offsetposition = ftell(fp);
+    
+    if(offsetposition > 0)
     {
-        // displaying the details of all the students 
-        printf("\n %s %s %s \t %-15s \t %-18s \t %-15ld \t %-15s \t %-15s \t %-15s \t %.2f",s.fname, s.mname, s.lname, s.address, s.registration, s.contact, s.email, s.faculty, s.semester , s.gpa);
+        printf("\n Preparing to read the data .........");
+        rewind(fp);
 
+        //displaying the titles 
+        printf("\n Name  \t Address  \t Registration \t Contact Number /t Email Address /t Faculty /t Semester /t GPA of +2 /n");
+
+        while(fread(&s, sizeof(struct student), 1, fp))
+        {
+            // displaying the details of all the students 
+            printf("\n %s %s %s \t %-15s \t %-18s \t %-15ld \t %-15s \t %-15s \t %-15s \t %.2f",s.fname, s.mname, s.lname, s.address, s.registration, s.contact, s.email, s.faculty, s.semester , s.gpa);
+
+        }
     }
+    else
+    printf("\n The File is empty. !");
+
+    fclose(fp);
+    return_to_menu;
 }
 
 // main std mgmt funciton declaration 
@@ -291,11 +328,260 @@ void std_mgmt()
         case 1 : std_add(); break;
         case 2 : std_search(); break;
         case 3 : std_display(); break;
+        case 4 : std_delete(); break;
         case 5 : return_to_menu(); break;
         default : printf("\n Invalid Choice");
     }
 
 }
+
+/* 
+    Function for the teacher management system 
+    it includes all the function for 
+        - adding the teacher details
+        - deleting the teacher details
+        - displaying the teachers details
+*/
+
+// function for adding the teachers details 
+void teach_add()
+{
+    errno = 0;
+
+    // opening the file teacher.bin for adding the details of the teachers
+    fpt =fopen ("D:/FacultyMgmtSystem/teacher_database.bin","ab");	
+    
+    // getting the details of the teachers
+
+    printf("\n Enter FIrst Name : \t ");
+    scanf("%s",tech.fname)
+
+    printf("\n Enter Middle Name : \t");
+    scanf("%s", tech.mname);
+
+    printf("\n Enter Last Name : \t");
+    scanf("%s", tech.lname);
+
+    printf("\n Enter Address : \t ");
+    scanf("%s", tech.address);
+
+    printf("\n Enter COntact Number : \t  ");
+    scanf("%ld", &tech.contact);
+
+    printf("\n Enter Email Id :  \t");
+    scanf("%s",tech.email);
+
+    printf("\n Enter SSF number :\t");
+    scanf("%d",&tech.ssf);
+
+    printf("\n Enter Work Experience :\t");
+    scnaf("%d", &tech.work_experience);
+
+    fclose(fpt);
+}
+
+// function to display the list of teachers 
+void teach_display()
+{
+    errno = 0;
+    top_menu();
+
+    fpt = fopen("D:/FacultyMgmtSystem/teacher_database.bin","rb");	        // opening the file for reading purpose
+   
+    // checking for the error
+    if(fp == NULL)
+    {
+        fprintf(stderr, "\n %s", strerror(errno));
+        return_to_menu();
+    }
+
+    rewind(fpt);    // rewinding the pointer to the initial line 
+
+    fseek(fpt, 0, SEEK_END); // going to the last of the file 
+    offsetposition = ftell(fpt);
+    if(offsetposition > 0)
+    {
+        printf("\n Preparing to read the data .........");
+        rewind(fpt);
+        
+        //displaying the titles 
+        printf("\n Name  \t Address  \t Contact Number /t Email Address /t SSF Number /t Work Experience  /n");
+
+        while(fread(&tech, sizeof(struct teacher), 1, fpt))
+        {
+            // displaying the details of all the students 
+            printf("\n %s %s %s \t %-15s \t %-18ld \t %-15s \t %-15d \t %-15d", tech.fname, tech.mname, tech.lname, tech.address, tech.contact, tech.email, tech.ssf, tech.work_experience);
+
+
+        }
+    }
+    else
+    printf("\n Sorry the file is empty !");
+
+    fclose(fpt);
+    return_to_menu();
+}
+
+
+// function to delete the teachers details 
+void teach_delete()
+{
+    top_menu();
+
+	errno = 0;
+	int temp_ssf;
+    // opening the file for reading and deleting the information 
+    fpt = fopen("D:/FacultyMgmtSystem/teacher_database.bin","rb"); // opening file for reading 
+	t_temp = fopen("D:/FacultyMgmtSystem/temp_teacher_database.bin","wb");   // opening file for temporary storing the  data 
+	
+    if (fpt == NULL)
+	{
+		fprintf(stderr, "\n Error :  %s", strerror(errno));
+        return_to_menu();
+	}
+
+	rewind(fpt);
+
+	fseek(fpt, 0, SEEK_END);
+
+	offsetposition = ftell(fpt);
+
+	if (offsetposition > 0)
+	{
+		printf("\n Enter the SSF number of the teacher you want to remove  :\t");
+		scanf("%d", temp_ssf);
+
+		rewind(fpt);
+
+        // reading the data 
+		while (fread(&user, sizeof(user), 1, fpt))
+		{
+            // checking if the data match or not 
+			if (temp_ssf == tech.ssf)
+			{
+				has_record = 'y';
+
+                // asking for the user validation 
+				printf("\n Do you want to delete the following record :\n 1 : Yes , 0 :No?");
+                printf("\n --------------------------------------------------------------------");
+                printf("\n | Name    : %s %s %s", tech.fname, tech.mname, tech.lname);
+                printf("\n | Address : %s",tech.address);
+                printf("\n | Contact : %ld", tech.contact);
+                printf("\n | SSF No  : %s",tech.ssf);
+                printf("\n ---------------------------------------------------------------------\n");
+
+				scanf("%d", &ch);
+				if (ch == 1)
+				{
+					flag = 1;
+				}
+				else
+					return;
+			}
+		}
+        // showing user if the record is not found 
+		if (has_record == 'n')
+			printf("\n Sorry the Number you are trying to delete is not found in the list");
+		
+        // deleting the record of the teacher 
+        if (flag == 1)
+		{
+			rewind(fpt);
+			while (fread(&tech, sizeof(tech), 1, fpt))
+			{
+				if ( temp_ssf != tech.ssf)
+				{
+					fwrite(&tech, sizeof(tech), 1, t_temp);
+				}
+			}
+			printf("\n One record deleted ! ");
+		}
+	}
+
+	else
+		printf("\n The file is empty.");
+
+	fclose(fpt);
+	fclose(t_temp);
+
+	remove("teacher_database.bin");
+	rename("temp_teacher_database", "teacher_database.bin ");
+	return_to_menu();
+}
+
+// function to search the details of the teachers 
+void teach_search()
+{
+    top_menu();
+	errno = 0;
+	
+    fpt = fopen("D:/FacultyMgmtSystem/teacher_database.bin","rb"); // opening file for reading 
+    if (fpt == NULL)
+	{
+		fprintf(stderr, "\n Error :  %s", strerror(errno));
+        return_to_menu();
+	}
+
+	rewind(fpt);
+	fseek(fpt, 0, SEEK_END);
+
+	offsetposition = ftell(fpt);
+
+	if (offsetposition > 0)
+	{
+		printf("\n Enter the name of the teacher to search :\t");
+		scanf("%s", temp_request);
+
+		printf("\n Searching for possible result.... \n ");
+		
+        rewind(fpt);
+
+		while (fread(&tech, sizeof(tech), 1, fpt))
+		{
+			if (strcmp(temp_request, tech.fname) == 0)
+			{
+                printf("\n --------------------------------------------------------------------");
+                printf("\n | Name    : %s %s %s", tech.fname, tech.mname, tech.lname);
+                printf("\n | Address : %s",tech.address);
+                printf("\n | Email   : %s", tech.email);
+                printf("\n | Contact : %ld", tech.contact);
+                printf("\n | SSF No  : %s",tech.ssf);
+                printf("\n ---------------------------------------------------------------------\n");
+				has_record = 'y';
+			}
+		}
+
+		if (has_record == 'n')
+			printf("\n Sorry the Number you are trying to search is not found in the list");
+	}
+    else 
+    printf("\n Sorry the file is empty. ");
+
+	fclose(fpt);
+	return_to_menu();
+}
+
+}
+
+// main function for the teacher management 
+void teach_mgmt()
+{
+    top_menu();
+    c_menu();
+    printf("\n Please Enter your choice :\t");
+    scanf("d",&ch);
+    switch(ch)
+    {
+        case 1 : teach_add(); break;
+        case 2 : teach_search(); break;
+        case 3 : teach_display(); break;
+        case 4 : teach_delete(); break;
+        case 5 :return_to_menu(); break;
+        default : printf("\n Invalid Choice");
+
+    }
+}
+
 /* code for the main menu that is to be displayed in the front page */
 void main_menu()
 {
@@ -314,6 +600,7 @@ void main_menu()
     switch(ch)
     {
         case 1: std_mgmt(); break;
+        case 2 : teach_mgmt(); break;
         case 5 : exit_program(); break; 
         default : printf("\n Please enter the number from 1 to 5 only ");
         
