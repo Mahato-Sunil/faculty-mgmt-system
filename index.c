@@ -18,40 +18,125 @@ int flag;
 /* struct for students */
 struct student
 {
-    char fname[20];
-    char mname[20];
-    char lname[20];
-    char address[20];
+    char fname[25];
+    char mname[25];
+    char lname[25];
+    char address[30];
     long int contact;
-    char email[20];
+    char email[30];
     float gpa;
-    char registration[20];
-    char faculty[15];
-    char semester[10];
+    char registration[30];
+    char semester[15];
 };
 struct student s;
 
 // struct for the teachers 
 struct teacher
 {
-    char fname[20];
-    char mname[20];
-    char lname[20];
-    char address[20];
+    char fname[25];
+    char mname[25];
+    char lname[25];
+    char address[30];
     long int contact;
-    char email[20];
+    char email[30];
     int work_experience;
     int ssf;
+    char sub[50];
 };
 struct teacher tech;
 
 
+// structure for the routine
 struct routine
 {
     char subject[20];
     char time[15];
     char teacher[20];
 };
+
+// variable initialization for the routine 
+// storing the routine in array of structures 
+// future updates are to be made in the array without changing other paramenters 
+// change the following array for altering the routines of the different faculty 
+
+// array of routine for semester 1
+ struct routine sem_1[] =
+     {
+        {"ENGLISH I", "10:00-11:00", "MR. SHOVAKANT REGMI"},
+        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
+        {"DIGITAL LOGIC", "12:00-01:00", "MR. SUJAN  SHRESTHA"},
+        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
+        {"COMPUTER", "02:30-03:30", "MR. DEEPAK POUDEL"}
+     };
+
+     // array of routine for semester 2
+ struct routine sem_2[] =
+     {
+        {"ENGLISH II", "10:00-11:00", " MR. DEVRAJ MAHATO"},
+        {"MATHS II ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
+        {"C PROGRAM", "12:00-01:00", " MR. DEEPAK POUDEL"},
+        {"MP", "01:30- 02:30", "Mr. SUJAN SHRESTHA"},
+        {"FINANCE", "02:30-03:30", " MR. DR BHANDARI"}
+     };
+
+     // array of routine for semester 3
+ struct routine sem_3[] =
+     {
+        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
+        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
+        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
+        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
+        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
+     };
+
+     // array of routine for semester 4
+ struct routine sem_4[] =
+     {
+        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
+        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
+        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
+        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
+        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
+     };
+
+     // array of routine for semester 5
+ struct routine sem_5[] =
+     {
+        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
+        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
+        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
+        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
+        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
+     };
+
+     // array of routine for semester 6
+ struct routine sem_6[] =
+     {
+        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
+        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
+        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
+        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
+        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
+     };
+
+// array of routine for semester 7
+ struct routine sem_7[] =
+     {
+        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
+        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
+        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
+        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
+        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
+     };
+// array of routine for semester 8
+ struct routine sem_8[] =
+     {
+        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
+        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
+        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
+        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
+        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
+     };
 
 // file pointer declaration 
 FILE *fp, *temp;
@@ -60,6 +145,7 @@ FILE *fpt, *t_temp;
 //function ti return to main menu
 void return_to_menu()
 {
+    fflush(stdin);
 	getchar();
 	printf("\n Press ENTER to return on main menu ");
 	ch = getchar();
@@ -93,9 +179,11 @@ void clear_screen()
 /* function to exit from the program */
 void exit_program()
 {
-    printf("\n Do you want to exit ? \n Press 1 to exit from the program. ( Press any number key to cancel.) \t");
+    fflush(stdin);
+    clear_screen();
+    printf("\n Do you want to exit ? \n Press 0 to exit from the program. ( Press any number key to cancel.) \t");
     scanf("%d",&ch);
-    if(ch==1)
+    if(ch==0)
     {
         clear_screen();
         printf("\n Thank you for Using the program");
@@ -109,6 +197,7 @@ void exit_program()
 /* code for showing the top logo  menu */
 void top_menu()
 {
+    fflush(stdin);
     // using graphics function to display on the top of the page 
     clear_screen();
     printf("***************************************************************************************************\n");
@@ -116,7 +205,6 @@ void top_menu()
     printf("****************************            CREATED BY SUNIL MAHATO         ***************************\n");
     printf("****************************         WEBSITE :  mahatosunil.com.np      ***************************\n");
     printf("****************************         EMAIL   :  sunilmaht642@gmail.com  ***************************\n");
-    printf("***************************************************************************************************\n");
     printf("***************************************************************************************************\n");
 }
 
@@ -129,41 +217,65 @@ void top_menu()
 // function for adding the student records
 void std_add()
 {
+    fflush(stdin);
     top_menu();
     fp = fopen("D:/FacultyMgmtSystem/student_database.bin","ab");
 
     printf("\n Enter the details of the students : ");
-    // while(choice != 'n')
-    // {
-        /* taking the information of the students using the struct */
+    
+       /* taking the information of the students using the struct */
         printf("\n Enter first Name : \t"); 
         scanf("%s",s.fname);
+
         printf("Enter Middle Name :\t");
         scanf("%s",s.mname);
+        
         printf("Enter Last Name : \t ");
         scanf("%s",s.lname);
+        
         printf("Enter Address: \t ");
         scanf("%s",s.address);
+        
         printf("Enter Contact Number : \t");
         scanf("%ld",&s.contact);
+        
         printf("Enter Email Address : \t");
         scanf("%s",s.email);
-        printf("Enter the GPA of +2  \t");
+        
+        printf("Enter the GPA  \t");
         scanf("%f",&s.gpa);
+        
+        printf("\n Enter the Registration Number :\t");
+        scanf("%s",s.registration);
+        
+        printf("\n Enter Semester :\t");
+        scanf("%s",s.semester);
 
         // inserting the details of the studnets into file 
         fwrite(&s, sizeof(struct student),1,fp);
-       
-        // printf("\n Do you want to continue adding details : [y/n] \t");
-        // getc(choice);
-   // } 
+
     return_to_menu();
     fclose(fp);
+}
+
+// function to only show the details of the studetns 
+void infoStudent()
+{
+    printf("\n --------------------------------------------------------------------");
+    printf("\n | Name    : %s %s %s", s.fname, s.mname, s.lname);
+    printf("\n | Address : %s",s.address);
+    printf("\n | Contact : %ld",s.contact);
+    printf("\n | Reg. No : %s",s.registration);
+    printf("\n | Email Id: %s",s.email);
+    printf("\n | Semester: %s",s.semester);
+    printf("\n ---------------------------------------------------------------------\n");
 }
 
 // function to search the student information 
 void std_search()
 {
+    fflush(stdin);
+    top_menu();
     errno = 0;
     fp = fopen("D:/FacultyMgmtSystem/student_database.bin","rb");
     if(fp == NULL)
@@ -172,20 +284,23 @@ void std_search()
             printf("\n Please create file before procedding !");
             return_to_menu();
         }
+
     rewind(fp);                     // moving the pointer to the initial line
     fseek(fp,0,SEEK_END);           //seeking to the last of the files
     offsetposition = ftell(fp);
+    
     if(offsetposition > 0)
     {
         printf("\n Enter the Name to search : \t ");
         scanf("%s",temp_request);
         printf("\n Searching for possible results..........");
         rewind(fp);
-        while(fread(&s, sizeof(s),1,fp))
+
+        while(fread(&s, sizeof(s),1,fp))        // searching the name in the file 
         {
             if(strcmp(temp_request,s.fname) == 0)
             {
-                printf("\n \t %s \t %s \t %s\t %s\t %ld\t  %s\t %.2f\t %d \t", s.fname,s.mname, s.lname, s.address, s.contact, s.email, s.gpa, s.registration);
+                infoStudent();
                 has_record = 'y';
             }
         }
@@ -199,17 +314,17 @@ void std_search()
 
     fclose(fp);
     return_to_menu();
-
 }
 
 // function to delete the record of the students
 void std_delete()
 {
+    fflush(stdin);
     top_menu();
     errno = 0;
 	
-    fp = fopen("D:/FacultyMgmtSystem/student_database.bin","rb");	
-    temp = fopen("D:/FacultyMgmtSystem/temp_student_database.bin","wb");
+    fp = fopen("D:/FacultyMgmtSystem/student_database.bin","rb");	        //opening the file to read  the data 
+    temp = fopen("D:/FacultyMgmtSystem/temp_student_database.bin","wb");    // opening the file to add the data after deleting
 
 	if (fp == NULL)
 	{
@@ -235,13 +350,7 @@ void std_delete()
                 
                 // asking for the user confirmation 
 				printf("\n Do you want to delete the following record :\n 1 : Yes , 0 :No?");
-                printf("\n --------------------------------------------------------------------");
-                printf("\n | Name    : %s %s %s", s.fname, s.mname, s.lname);
-                printf("\n | Address : %s",s.address);
-                printf("\n | Contact : %ld", s.contact);
-                printf("\n | Reg. No : %s",s.registration);
-                printf("\n ---------------------------------------------------------------------\n");
-
+                infoStudent();
 				scanf("%d", &ch);
 				if (ch == 1)
 				{
@@ -263,13 +372,12 @@ void std_delete()
 			{
 				if (strcmp(temp_request, s.registration) != 0)
 				{
-					fwrite(&s, sizeof(s), 1, temp);
+					fwrite(&s, sizeof(s), 1, temp);     // searching for match and copying the content of the file until the match is found to the new temp file 
 				}
 			}
 			printf("\n One record deleted ! ");
 		}
 	}
-
      // code if the file is empty 
 	else
     printf("\n The file is empty. Please create some record before procedding !");
@@ -283,6 +391,7 @@ void std_delete()
 // function to display the students info
 void std_display()
 {
+    fflush(stdin);
     top_menu();
     errno = 0;
 
@@ -311,8 +420,8 @@ void std_display()
         while(fread(&s, sizeof(struct student), 1, fp))
         {
             // displaying the details of all the students 
-            printf("\n %s %s %s \t %-15s \t %-18s \t %-15ld \t %-15s \t %-15s \t %-15s \t %.2f",s.fname, s.mname, s.lname, s.address, s.registration, s.contact, s.email, s.faculty, s.semester , s.gpa);
-
+           infoStudent();
+            // printf("\n %s %s %s \t %-15s \t %-18s \t %-15ld \t %-15s \t %-15s \t %-15s \t %.2f \t ",s.fname, s.mname, s.lname, s.address, s.registration, s.contact, s.email, s.faculty, s.semester , s.gpa);
         }
     }
     else
@@ -325,6 +434,7 @@ void std_display()
 // main std mgmt funciton declaration 
 void std_mgmt()
 {
+    fflush(stdin);
     top_menu();
     c_menu();
     printf("\n Please Enter your choice : \t");
@@ -338,9 +448,8 @@ void std_mgmt()
         case 5 : return_to_menu(); break;
         default : printf("\n Invalid Choice");
     }
-
+    return_to_menu();
 }
-
 
 /* 
     Function for the teacher management system 
@@ -353,13 +462,14 @@ void std_mgmt()
 // function for adding the teachers details 
 void teach_add()
 {
+    fflush(stdin);
+    top_menu();
     errno = 0;
 
     // opening the file teacher.bin for adding the details of the teachers
     fpt =fopen ("D:/FacultyMgmtSystem/teacher_database.bin","ab");	
     
     // getting the details of the teachers
-
     printf("\n Enter FIrst Name : \t ");
     scanf("%s",tech.fname);
 
@@ -384,42 +494,59 @@ void teach_add()
     printf("\n Enter Work Experience :\t");
     scanf("%d", &tech.work_experience);
 
+    printf("\n Enter the subject taught [ use comma for multiple subject] \t");
+    scanf("%s",tech.sub);
+
     fclose(fpt);
+    return_to_menu();
+}
+
+// function to display the teachers info only 
+void infoTeacher()
+{
+    fflush(stdin);
+    printf("\n --------------------------------------------------------------------");
+    printf("\n | Name       : %s %s %s", tech.fname, tech.mname, tech.lname);
+    printf("\n | Address    : %s",tech.address);
+    printf("\n | Contact    : %ld", tech.contact);
+    printf("\n | SSF No     : %s",tech.ssf);
+    printf("\n | Experience : %d years", tech.work_experience);
+    printf("\n | Subjects   : %s",tech.sub);
+    printf("\n ---------------------------------------------------------------------\n");
 }
 
 // function to display the list of teachers 
 void teach_display()
 {
-    errno = 0;
+    fflush(stdin);
     top_menu();
-
+    errno =0;
     fpt = fopen("D:/FacultyMgmtSystem/teacher_database.bin","rb");	        // opening the file for reading purpose
    
     // checking for the error
-    if(fp == NULL)
+    if(fpt == NULL)
     {
         fprintf(stderr, "\n %s", strerror(errno));
         return_to_menu();
     }
-
     rewind(fpt);    // rewinding the pointer to the initial line 
 
     fseek(fpt, 0, SEEK_END); // going to the last of the file 
     offsetposition = ftell(fpt);
+    
     if(offsetposition > 0)
     {
         printf("\n Preparing to read the data .........");
         rewind(fpt);
         
         //displaying the titles 
-        printf("\n Name  \t Address  \t Contact Number /t Email Address /t SSF Number /t Work Experience  /n");
+        printf("\n Name  \t Address  \t Contact Number \t Email Address \t SSF Number \t Work Experience  \n");
 
         while(fread(&tech, sizeof(struct teacher), 1, fpt))
         {
             // displaying the details of all the students 
-            printf("\n %s %s %s \t %-15s \t %-18ld \t %-15s \t %-15d \t %-15d", tech.fname, tech.mname, tech.lname, tech.address, tech.contact, tech.email, tech.ssf, tech.work_experience);
-
-
+            infoTeacher();
+           // printf("\n %s %s %s \t %-15s \t %-18ld \t %-15s \t %-15d \t %-15d", tech.fname, tech.mname, tech.lname, tech.address, tech.contact, tech.email, tech.ssf, tech.work_experience);
         }
     }
     else
@@ -429,15 +556,15 @@ void teach_display()
     return_to_menu();
 }
 
-
 // function to delete the teachers details 
 void teach_delete()
 {
+    fflush(stdin);
     top_menu();
 
 	errno = 0;
 	int temp_ssf;
-    // opening the file for reading and deleting the information 
+
     fpt = fopen("D:/FacultyMgmtSystem/teacher_database.bin","rb"); // opening file for reading 
 	t_temp = fopen("D:/FacultyMgmtSystem/temp_teacher_database.bin","wb");   // opening file for temporary storing the  data 
 	
@@ -448,16 +575,13 @@ void teach_delete()
 	}
 
 	rewind(fpt);
-
 	fseek(fpt, 0, SEEK_END);
-
 	offsetposition = ftell(fpt);
 
 	if (offsetposition > 0)
 	{
 		printf("\n Enter the SSF number of the teacher you want to remove  :\t");
 		scanf("%d", temp_ssf);
-
 		rewind(fpt);
 
         // reading the data 
@@ -467,17 +591,10 @@ void teach_delete()
 			if (temp_ssf == tech.ssf)
 			{
 				has_record = 'y';
-
                 // asking for the user validation 
 				printf("\n Do you want to delete the following record :\n 1 : Yes , 0 :No?");
-                printf("\n --------------------------------------------------------------------");
-                printf("\n | Name    : %s %s %s", tech.fname, tech.mname, tech.lname);
-                printf("\n | Address : %s",tech.address);
-                printf("\n | Contact : %ld", tech.contact);
-                printf("\n | SSF No  : %s",tech.ssf);
-                printf("\n ---------------------------------------------------------------------\n");
-
-				scanf("%d", &ch);
+                infoTeacher();
+				scanf("%d", &ch);       // asking the users for confirmaion
 				if (ch == 1)
 				{
 					flag = 1;
@@ -504,7 +621,6 @@ void teach_delete()
 			printf("\n One record deleted ! ");
 		}
 	}
-
 	else
 		printf("\n The file is empty.");
 
@@ -519,6 +635,7 @@ void teach_delete()
 // function to search the details of the teachers 
 void teach_search()
 {
+    fflush(stdin);
     top_menu();
 	errno = 0;
 	
@@ -539,25 +656,17 @@ void teach_search()
 		printf("\n Enter the name of the teacher to search :\t");
 		scanf("%s", temp_request);
 
-		printf("\n Searching for possible result.... \n ");
-		
+		printf("\n Searching for possible result.... \n ");	
         rewind(fpt);
 
 		while (fread(&tech, sizeof(tech), 1, fpt))
 		{
 			if (strcmp(temp_request, tech.fname) == 0)
 			{
-                printf("\n --------------------------------------------------------------------");
-                printf("\n | Name    : %s %s %s", tech.fname, tech.mname, tech.lname);
-                printf("\n | Address : %s",tech.address);
-                printf("\n | Email   : %s", tech.email);
-                printf("\n | Contact : %ld", tech.contact);
-                printf("\n | SSF No  : %s",tech.ssf);
-                printf("\n ---------------------------------------------------------------------\n");
+                infoTeacher();
 				has_record = 'y';
 			}
 		}
-
 		if (has_record == 'n')
 			printf("\n Sorry the Number you are trying to search is not found in the list");
 	}
@@ -571,10 +680,11 @@ void teach_search()
 // main function for the teacher management 
 void teach_mgmt()
 {
+    fflush(stdin);
     top_menu();
     c_menu();
     printf("\n Please Enter your choice :\t");
-    scanf("d",&ch);
+    scanf("%d",&ch);
     switch(ch)
     {
         case 1 : teach_add(); break;
@@ -583,10 +693,9 @@ void teach_mgmt()
         case 4 : teach_delete(); break;
         case 5 :return_to_menu(); break;
         default : printf("\n Invalid Choice");
-
     }
+    return_to_menu();
 }
-
 
 /* 
     functions for the classroom management 
@@ -594,65 +703,45 @@ void teach_mgmt()
     - display the faculty wise information 
 */
 
-// function to display the routine of semester 1
-void sem_1()
+// code for showing the common format in the routine function 
+void format()
 {
-    // storing the routine in array of structures 
-    // future updates are to be made in the array without changing other paramenters 
-    // change the following array for altering the routines of the different faculty 
-    struct routine sem_1[] =
-     {
-        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
-        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
-        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
-        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
-        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
-     };
+        fflush(stdin);
+        printf("\n-------------------------------------------------------------------------------");
+        printf("\n NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
+        printf("\n-------------------------------------------------------------------------------");
+        printf("\n BREAK TIME : \t [ 01:00 -- 01:30 ]");
+        printf("\n-------------------------------------------------------------------------------");
+}
 
+// function to display the routine of semester 1
+void sem_first()
+{
+        fflush(stdin);
       // displaying the routine 
         printf("\n Preparing to display the routine............");
         printf("\n \n");
-
         printf("\n \t \t \t \t SEMESTER FIRST ");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
-
+        format();       // caling the format function to show the format of the routine
         // looping the contents of the array 
         for(i=0; i<5; i++)
         {
             printf("\n| \t %s \t | \t %s \t| \t %-5s \t",sem_1[i].subject, sem_1[i].time, sem_1[i].teacher);
         }
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n \t NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n \t BREAK TIME : \t [ 01:00 -- 01:30 ]");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
         return_to_menu();
 }
 
 // function to display the routine of semester 2
-void sem_2()
+void sem_second()
 {
-    // storing the routine in array of structures 
-    // future updates are to be made in the array without changing other paramenters 
-    // change the following array for altering the routines of the different faculty 
-    struct routine sem_2[] =
-     {
-        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
-        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
-        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
-        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
-        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
-     };
-
-      // displaying the routine 
+        fflush(stdin);
+          // displaying the routine 
         printf("\n Preparing to display the routine............");
         printf("\n \n");
-
         printf("\n \t \t \t \t SEMESTER SECOND ");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
+        format();       // caling the format function to show the format of the routine
 
         // looping the contents of the array 
         for(i=0; i<5; i++)
@@ -660,73 +749,39 @@ void sem_2()
             printf("\n| \t %s \t | \t %s \t| \t %-5s \t",sem_2[i].subject, sem_2[i].time, sem_2[i].teacher);
         }
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n BREAK TIME : \t [ 01:00 -- 01:30 ]");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
         return_to_menu();
 }
 
 // function to display the routine of semester 3
-void sem_3()
+void sem_third()
 {
-    // storing the routine in array of structures 
-    // future updates are to be made in the array without changing other paramenters 
-    // change the following array for altering the routines of the different faculty 
-    struct routine sem_3[] =
-     {
-        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
-        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
-        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
-        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
-        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
-     };
-
       // displaying the routine 
+      fflush(stdin);
         printf("\n Preparing to display the routine............");
         printf("\n \n");
-
         printf("\n \t \t \t \t SEMESTER THIRD ");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
-
+        format();       // caling the format function to show the format of the routine
+        
         // looping the contents of the array 
         for(i=0; i<5; i++)
         {
             printf("\n| \t %s \t | \t %s \t| \t %-5s \t",sem_3[i].subject, sem_3[i].time, sem_3[i].teacher);
         }
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n BREAK TIME : \t [ 01:00 -- 01:30 ]");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
         return_to_menu();    
 }
 
 // function to display the routine of semester 4
-void sem_4()
+void sem_fourth()
 {
-    // storing the routine in array of structures 
-    // future updates are to be made in the array without changing other paramenters 
-    // change the following array for altering the routines of the different faculty 
-    struct routine sem_4[] =
-     {
-        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
-        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
-        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
-        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
-        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
-     };
-
+    fflush(stdin);
       // displaying the routine 
         printf("\n Preparing to display the routine............");
         printf("\n \n");
-
         printf("\n \t \t \t \t SEMESTER FOURTH ");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
+        format();       // caling the format function to show the format of the routine
 
         // looping the contents of the array 
         for(i=0; i<5; i++)
@@ -734,168 +789,91 @@ void sem_4()
             printf("\n| \t %s \t | \t %s \t| \t %-5s \t",sem_4[i].subject, sem_4[i].time, sem_4[i].teacher);
         }
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n BREAK TIME : \t [ 01:00 -- 01:30 ]");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
         return_to_menu();    
 }
 
 // function to display the routine of semester 5
-void sem_5()
+void sem_fifth()
 {
-    // storing the routine in array of structures 
-    // future updates are to be made in the array without changing other paramenters 
-    // change the following array for altering the routines of the different faculty 
-    struct routine sem_5[] =
-     {
-        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
-        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
-        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
-        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
-        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
-     };
-
+    fflush(stdin);
       // displaying the routine 
         printf("\n Preparing to display the routine............");
         printf("\n \n");
-
         printf("\n \t \t \t \t SEMESTER FIFTH ");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
-
+        format();       // caling the format function to show the format of the routine
         // looping the contents of the array 
         for(i=0; i<5; i++)
         {
             printf("\n| \t %s \t | \t %s \t| \t %-5s \t",sem_5[i].subject, sem_5[i].time, sem_5[i].teacher);
         }
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n BREAK TIME : \t [ 01:00 -- 01:30 ]");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
+
         return_to_menu();
     
 }
 
 // function to display the routine of semester 6
-void sem_6()
+void sem_sixth()
 {
-    // storing the routine in array of structures 
-    // future updates are to be made in the array without changing other paramenters 
-    // change the following array for altering the routines of the different faculty 
-    struct routine sem_6[] =
-     {
-        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
-        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
-        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
-        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
-        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
-     };
-
+    fflush(stdin);
       // displaying the routine 
         printf("\n Preparing to display the routine............");
         printf("\n \n");
-
         printf("\n \t \t \t \t SEMESTER SIXTH ");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
-
+        format();       // caling the format function to show the format of the routine
         // looping the contents of the array 
         for(i=0; i<5; i++)
         {
             printf("\n| \t %s \t | \t %s \t| \t %-5s \t",sem_6[i].subject, sem_6[i].time, sem_6[i].teacher);
         }
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n BREAK TIME : \t [ 01:00 -- 01:30 ]");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
         return_to_menu();
-    
 }
 
 // function to display the routine of semester 7
-void sem_7()
+void sem_seventh()
 {
-    // storing the routine in array of structures 
-    // future updates are to be made in the array without changing other paramenters 
-    // change the following array for altering the routines of the different faculty 
-    struct routine sem_7[] =
-     {
-        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
-        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
-        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
-        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
-        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
-     };
-
+    fflush(stdin);
       // displaying the routine 
         printf("\n Preparing to display the routine............");
         printf("\n \n");
-
         printf("\n \t \t \t \t SEMESTER SEVENTH ");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
-
+        format();       // caling the format function to show the format of the routine
         // looping the contents of the array 
         for(i=0; i<5; i++)
         {
             printf("\n| \t %s \t | \t %s \t| \t %-5s \t",sem_7[i].subject, sem_7[i].time, sem_7[i].teacher);
         }
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n BREAK TIME : \t [ 01:00 -- 01:30 ]");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
         return_to_menu();    
 }
 
 // function to display the routine of semester 8
-void sem_8()
+void sem_eighth()
 {
-    // storing the routine in array of structures 
-    // future updates are to be made in the array without changing other paramenters 
-    // change the following array for altering the routines of the different faculty 
-    struct routine sem_8[] =
-     {
-        {"ENGLISH I", "10:00-11:00", " MR. SHOVAKANT REGMI"},
-        {"MATHS ", "11:00-12:00", "Mr.PRAHLAD SANGRAULA"},
-        {"DIGITAL LOGIC", "12:00-01:00", " MR. SUJAN  SHRESTHA"},
-        {"SOCIOLOGY ", "01:30- 02:30", "Mr.PRAHLAD SANGRAULA"},
-        {"COMPUTER", "02:30-03:30", " MR. DEEPAK POUDEL"}
-     };
-
+    fflush(stdin);
       // displaying the routine 
         printf("\n Preparing to display the routine............");
         printf("\n \n");
-
         printf("\n \t \t \t \t SEMESTER EIGHT ");
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
-
+        format();       // caling the format function to show the format of the routine
         // looping the contents of the array 
         for(i=0; i<5; i++)
         {
             printf("\n| \t %s \t | \t %s \t| \t %-5s \t",sem_8[i].subject, sem_8[i].time, sem_8[i].teacher);
         }
         printf("\n-------------------------------------------------------------------------------");
-        printf("\n NOTE :  ROUTINE APPLICABLE FROM SUNDAY TO FRIDAY !");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n BREAK TIME : \t [ 01:00 -- 01:30 ]");
-        printf("\n-------------------------------------------------------------------------------");
-        printf("\n-------------------------------------------------------------------------------");
         return_to_menu();
 }
 
 
 void routine_mgmt()
-
 {
+    fflush(stdin);
     top_menu();
     // displaying the functions 
     printf("***********          [ 1 ] >> [ FIRST SEMESTER ]         [ 5 ] >> [ FIFTH SEMESTER  ]         ******************\n");
@@ -904,58 +882,54 @@ void routine_mgmt()
     printf("***********          [ 4 ] >> [ FOURTH SEMESTER]         [ 8 ] >> [ EIGHTH SEMESTER ]         ******************\n");
     printf("***********                                              [ 9 ] >> [ QUIT            ]         ******************\n");
     printf("****************************************************************************************************************\n");
-   
+    printf("\n Enter your choice : \t");
     scanf("%d",&ch); 
     switch (ch)
     {
-        case 1 : sem_1(); break;
-        case 2 : sem_2(); break;
-        case 3 : sem_3(); break;
-        case 4 : sem_4(); break;
-        case 5 : sem_5(); break;
-        case 6 : sem_6(); break;
-        case 7 : sem_7(); break;
-        case 8 : sem_8(); break;
+        case 1 : sem_first(); break;
+        case 2 : sem_second(); break;
+        case 3 : sem_third(); break;
+        case 4 : sem_fourth(); break;
+        case 5 : sem_fifth(); break;
+        case 6 : sem_sixth(); break;
+        case 7 : sem_seventh(); break;
+        case 8 : sem_eighth(); break;
         case 9 : exit_program();
         default : printf("\n Invalid input ! ");
     }
     return_to_menu();
-
 }
-
 
 /* code for the main menu that is to be displayed in the front page */
 void menu()
 {
+    fflush(stdin);
+    top_menu();
     do
     {
-    top_menu();
-    printf("****************************    [ 1 ]   >>  [  STUDENT MANAGEMENT   ]   ***************************\n");
-    printf("****************************    [ 2 ]   >>  [  TEACHER MANAGEMENT   ]   ***************************\n");
-    printf("****************************    [ 3 ]   >>  [  ROUTINE          ]   ***************************\n");
-    printf("****************************    [ 4 ]   >>  [  SALARY MANAGEMENT    ]   ***************************\n");
-    printf("****************************    [ 5 ]   >>  [  QUIT                 ]   ***************************\n");
-    printf("***************************************************************************************************\n");
-    printf("***************************************************************************************************\n");
-    printf("\n Please Enter your choice : \t");
-    scanf("%d",&ch);
-    switch(ch)
-    {
-        case 1 : std_mgmt(); break;
-        case 2 : teach_mgmt(); break;
-        case 3 : routine_mgmt(); break;
-        case 5 : exit_program(); break; 
-        default : printf("\n Please enter the number from 1 to 5 only ");
-        
-    }
-    }
-    while(ch != 5);
+        printf("****************************    [ 1 ]   >>  [  STUDENT MANAGEMENT   ]   ***************************\n");
+        printf("****************************    [ 2 ]   >>  [  TEACHER MANAGEMENT   ]   ***************************\n");
+        printf("****************************    [ 3 ]   >>  [  ROUTINE              ]   ***************************\n");
+        printf("****************************    [ 0 ]   >>  [  QUIT                 ]   ***************************\n");
+        printf("***************************************************************************************************\n");
+        printf("***************************************************************************************************\n");
+        printf("\n Please Enter your choice : \t");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1 : std_mgmt(); break;
+            case 2 : teach_mgmt(); break;
+            case 3 : routine_mgmt(); break;
+            case 0 : exit_program(); break; 
+            default : printf("\n Please enter the number from 1 to 5 only ");        
+        }
+    } while (ch =! 0);
 }
 
 /* code for the user authorization */
 void login()
 {
-    
+    fflush(stdin);
     // declaring the default username and the pasword
    int pw;
     // asking the used for their credintials
@@ -977,6 +951,7 @@ void login()
 /* Main Functions */
 int main()
 {
+    fflush(stdin);
     top_menu();
     login();
     return 0;
